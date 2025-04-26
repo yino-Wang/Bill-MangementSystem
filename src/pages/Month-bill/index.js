@@ -5,7 +5,9 @@ import { useMemo } from 'react'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
-import _ from 'lodash'
+import _, { groupBy } from 'lodash'
+import '../Month-bill/components/dayBill/index'
+import DailyBill from '../Month-bill/components/dayBill/index'
 
 const Month = () => {
     //按月做数据的分组
@@ -47,7 +49,7 @@ const Month = () => {
         const nowDate = dayjs().format('YYYY-MM')
         //边界值控制
         if(monthGroup[nowDate]){
-            setCurrentMonthList = (monthGroup[nowDate])
+            setCurrentMonthList(monthGroup[nowDate])
         }
     },[monthGroup])
 
@@ -65,6 +67,19 @@ const Month = () => {
         console.log('拿到的账单:', monthGroup[formatDate])
 
     }
+
+    //
+    const dayGroup = useMemo(() => {
+        const groupData = _.groupBy(currentMonthList, (item) => dayjs(item.date).format('YYYY-MM-DD'))
+        const keys = Object.keys(groupData)
+        console.log('currentMonthList 用于按天分组的数据：', currentMonthList)
+
+        return {
+            groupData,
+            keys
+        }
+      }, [currentMonthList])
+      console.log(dayGroup);
 
   return (
     <div className="monthlyBill">
@@ -84,16 +99,16 @@ const Month = () => {
           {/* 统计区域 */}
           <div className='twoLineOverview'>
             <div className="item">
-              <span className="money">{100}</span>
-              <span className="type">{monthResult.pay.toFixed(2)}</span>
+              <span className="money">{monthResult.pay.toFixed(2)}</span>
+              <span className="type">Pay</span>
             </div>
             <div className="item">
-              <span className="money">{200}</span>
-              <span className="type">{monthResult.income.toFixed(2)}</span>
+              <span className="money">{monthResult.income.toFixed(2)}</span>
+              <span className="type">Income</span>
             </div>
             <div className="item">
-              <span className="money">{200}</span>
-              <span className="type">{monthResult.total.toFixed(2)}</span>
+              <span className="money">{monthResult.total.toFixed(2)}</span>
+              <span className="type">Remaining</span>
             </div>
           </div>
           {/* 时间选择器 */}
@@ -108,6 +123,12 @@ const Month = () => {
             max={new Date()}
           />
         </div>
+        {/*单日列表统计渲染*/}
+            {
+                dayGroup.keys.map(key => {
+                    return <DailyBill key={key} date={key} billList={dayGroup.groupData[key] || []} />
+                })
+            }
       </div>
     </div >
   )

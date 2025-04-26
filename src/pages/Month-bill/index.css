@@ -61,22 +61,23 @@
     .twoLineOverview {
       display: flex;
       justify-content: space-between;
-      width: 250px;
-  
+      width: 100%;
+      margin: 10px;
       .item {
         display: flex;
         flex-direction: column;
-  
+
         .money {
           height: 24px;
           line-height: 24px;
-          margin-bottom: 5px;
-          font-size: 18px;
+          margin-bottom: 10px;
+          font-size: 25px;
+          font-style:oblique;
         }
         .type {
           height: 14px;
           line-height: 14px;
-          font-size: 12px;
+          font-size: 18px;
         }
       }
     }
