@@ -13,17 +13,17 @@ import {
 const tabs = [
   {
     key: '/month',
-    title: '月度账单',
+    title: 'Monthly Bill',
     icon: <BillOutline />,
   },
   {
     key: '/new',
-    title: '记账',
+    title: 'Create a Bill',
     icon: <AddCircleOutline />,
   },
   {
     key: '/year',
-    title: '年度账单',
+    title: 'Yearly Bill',
     icon: <CalculatorOutline />,
   },
 ]
@@ -38,7 +38,7 @@ const Layout = () => {
   const navigate = useNavigate()
   const swithRoute = (path) => {
     console.log(path)
-    navigate(path)
+    navigate(path) //path -> item.key
   }
   return (
     <div className="layout">
