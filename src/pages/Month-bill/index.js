@@ -1,7 +1,14 @@
 import { NavBar, DatePicker } from 'antd-mobile'
 import './index.css'
+import { useState } from 'react'
+import classNames from 'classnames'
 
 const Month = () => {
+    //控制弹框打开和关闭
+    const [dataVisible,setDataVisible] = useState(false)
+    const onClose = () => {
+        setDataVisible(false)
+    }
   return (
     <div className="monthlyBill">
       <NavBar className="nav" backArrow={false}>
@@ -10,11 +17,12 @@ const Month = () => {
       <div className="content">
         <div className="header">
           {/* 时间切换区域 */}
-          <div className="date">
+          <div className="date" onClick={() => setDataVisible(true)}>
             <span className="text">
               2023 | 3月账单
             </span>
-            <span className='arrow expand'></span>
+            {/**/}
+            <span className= {classNames('arrow', dataVisible && 'expand')}></span>
           </div>
           {/* 统计区域 */}
           <div className='twoLineOverview'>
@@ -32,11 +40,14 @@ const Month = () => {
             </div>
           </div>
           {/* 时间选择器 */}
-          <DatePicker
+          <DatePicker /*组件 具体取消确定按钮绑定事件看文档 */
             className="kaDate"
             title="记账日期"
             precision="month"
-            visible={false}
+            visible={dataVisible}
+            onCancel={() => setDataVisible(false)}
+            onConfirm={() => setDataVisible(false)}
+            onClose={onClose} //点击盲层关闭
             max={new Date()}
           />
         </div>
