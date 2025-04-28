@@ -4,9 +4,46 @@ import './index.css'
 import classNames from 'classnames'
 import { billListData } from '../../constants'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { addBillList } from '../../store/modules/billStore'
+import {useDispatch} from 'react-redux'
+import dayjs from 'dayjs'
 
 const New = () => {
 const navigate = useNavigate()
+//控制收入支出的状态
+const [billtype, setBillType] = useState('pay')
+//收集金额money
+const [money,setMoney] = useState()
+const moneyChange = (value) => {
+    setMoney(value)
+}
+//收集账单类型 useFor
+const [useFor,setUseFor] = useState('')
+const dispatch = useDispatch()
+//save new bill
+const saveBill = () => {
+    const data = {
+        type: billtype,
+        money: billtype === 'pay' ? -money : +money,
+        date: selectedDate,
+        useFor: useFor
+    }
+    console.log(data)
+    dispatch(addBillList(data))
+}
+
+//
+const [dateVisible,setDateVisible] = useState(false)
+//
+const [selectedDate,setSelectedDate] = useState()
+//
+const dateConfirm = (value) => {
+    console.log(value)
+    setSelectedDate(value)
+    setDateVisible(false)
+}
+
   return (
     <div className="keepAccounts">
       <NavBar className="nav" onBack={() => navigate(-1)}>
@@ -17,13 +54,15 @@ const navigate = useNavigate()
         <div className="kaType">
           <Button
             shape="rounded"
-            className={classNames('selected')}
+            className={classNames(billtype === 'pay' ? 'selected' : '')}
+            onClick={() => setBillType('pay')}
           >
             Pay
           </Button>
           <Button
-            className={classNames('')}
+            className={classNames(billtype === 'income' ? 'selected' : '')}
             shape="rounded"
+            onClick={() => setBillType('income')}
           >
             Income
           </Button>
@@ -33,18 +72,22 @@ const navigate = useNavigate()
           <div className="kaForm">
             <div className="date">
               <Icon type="calendar" className="icon" />
-              <span className="text">{'Today'}</span>
+              <span className="text" onClick={() => setDateVisible(true)}>{dayjs(selectedDate).format('YYYY-MM-DD')}</span>
               <DatePicker
                 className="kaDate"
                 title="Date"
                 max={new Date()}
+                visible = {dateVisible}
+                onConfirm={dateConfirm}
               />
             </div>
             <div className="kaInput">
               <Input
                 className="input"
-                placeholder="0.00"
+                placeholder="add a new bill"
                 type="number"
+                value = {money}
+                onChange={moneyChange}
               />
               <span className="iconYuan">$</span>
             </div>
@@ -53,8 +96,8 @@ const navigate = useNavigate()
       </div>
 
       <div className="kaTypeList">
-        {/*可选链操作符 ?.，意思是：如果billList存在，再去找pay 如果pay存在，再去调用map()函数*/ }
-        {billListData?.pay?.map(item => {
+        {/*可选操作符 ?.，意思是：如果billList存在，再去找pay 如果pay存在，再去调用map()函数*/ }
+        {billListData[billtype]?.map(item => {
           return (
             <div className="kaType" key={item.type}>
               <div className="title">{item.name}</div>
@@ -64,10 +107,10 @@ const navigate = useNavigate()
                     <div
                       className={classNames(
                         'item',
-                        ''
+                        useFor === item.type ? 'selected' : ''
                       )}
                       key={item.type}
-
+                      onClick={() => setUseFor(item.type)}
                     >
                       <div className="icon">
                         <Icon type={item.type} />
@@ -83,7 +126,7 @@ const navigate = useNavigate()
       </div>
 
       <div className="btns">
-        <Button className="btn save">
+        <Button className="btn save" onClick={saveBill}>
           Save
         </Button>
       </div>

@@ -30,14 +30,14 @@ const DailyBill = ({ date, billList }) => {
         <div className="oneLineOverview">
           <div className="pay">
             <span className="type">支出</span>
-            <span className="money">{dailyResult.pay.toFixed(2)}</span>
+            <span className="money">{(dailyResult.pay ?? 0).toFixed(2)}</span>
           </div>
           <div className="income">
             <span className="type">收入</span>
-            <span className="money">{dailyResult.income.toFixed(2)}</span>
+            <span className="money">{(dailyResult.income ?? 0).toFixed(2)}</span>
           </div>
           <div className="balance">
-            <span className="money">{dailyResult.total.toFixed(2)}</span>
+            <span className="money">{(dailyResult.total ?? 0).toFixed(2)}</span>
             <span className="type">结余</span>
           </div>
         </div>
@@ -54,7 +54,7 @@ const DailyBill = ({ date, billList }) => {
                 <div className="billType">{item.useFor}</div>
               </div>
               <div className={classNames('money', item.type)}>
-                {item.money.toFixed(2)}
+              {(item.money ?? 0).toFixed(2)}
               </div>
             </div>
           )

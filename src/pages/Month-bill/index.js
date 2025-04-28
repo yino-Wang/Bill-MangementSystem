@@ -12,6 +12,7 @@ import DailyBill from '../Month-bill/components/dayBill/index'
 const Month = () => {
     //按月做数据的分组
     const billList = useSelector(state => state.bill.billList)
+
     //数据二次处理useMemo lodash库的groupBy用来分组
     const monthGroup = useMemo(() => {
         const grouped = _.groupBy(billList, (item) => {
