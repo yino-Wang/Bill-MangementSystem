@@ -4,6 +4,7 @@
       top: 0; /*顶部与浏览器窗口顶部对齐 只有在 position 是 absolute 或 fixed 时才有效*/
       bottom: 50px;
       width: 100%; /*宽度占满整个父元素或窗口的 100%*/
+      overflow-y: auto;
     }
     .footer {
       position: fixed;
