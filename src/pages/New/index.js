@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { addBillList } from '../../store/modules/billStore'
 import {useDispatch} from 'react-redux'
 import dayjs from 'dayjs'
+import { Toast } from 'antd-mobile'
 
 const New = () => {
 const navigate = useNavigate()
@@ -31,6 +32,17 @@ const saveBill = () => {
     }
     console.log(data)
     dispatch(addBillList(data))
+    // 弹出提示
+    Toast.show({
+        icon: 'success',
+        content: 'Save successfully!',
+        duration: 1000, // 1秒后消失
+    })
+
+    // 1秒后跳转到Monthly页面
+    setTimeout(() => {
+        navigate('/month')  // 这里填写你的Monthly页面路由地址
+    }, 1000)
 }
 
 //

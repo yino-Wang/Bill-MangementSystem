@@ -153,6 +153,13 @@
       "money": -5,
       "date": "2025-04-25T14:00:00.000Z",
       "useFor": "longdistance"
+    },
+    {
+      "id": "b808",
+      "type": "pay",
+      "money": -66,
+      "date": "2025-04-12T14:00:00.000Z",
+      "useFor": "book"
     }
   ]
 }
