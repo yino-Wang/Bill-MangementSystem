@@ -5,7 +5,10 @@ const billStore = createSlice({
     name: 'bill',
     //数据状态state
     initialState: {
-        billList: []
+        billList: {
+            pay: [],
+            income: []
+        }
     },
     reducers: {
         //同步修改方法
