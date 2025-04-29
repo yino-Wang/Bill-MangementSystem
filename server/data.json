@@ -160,6 +160,12 @@
       "money": -66,
       "date": "2025-04-12T14:00:00.000Z",
       "useFor": "book"
+    },
+    {
+      "id": "ec5c",
+      "type": "pay",
+      "money": -15,
+      "useFor": "audio"
     }
   ]
 }
