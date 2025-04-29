@@ -4,10 +4,12 @@ import New from '../pages/New'
 import { Children } from 'react'
 import Month from '../pages/Month-bill'
 import Year from '../pages/Year-bill'
+import { Navigate } from 'react-router-dom'
+
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout/>,
+        element: <Layout />,
         children: [
             {
                 path: '/month',

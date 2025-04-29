@@ -1,0 +1,50 @@
+.oneLineOverview {
+    display: flex;
+    justify-content: space-between;
+  
+    .pay {
+      flex: 1;
+      .type {
+        font-size: 10px;
+        margin-right: 2.5px;
+        color: #e56a77;
+      }
+      .money {
+        color: var(--ka-text-color);
+        font-size: 13px;
+      }
+    }
+  
+    .income {
+      flex: 1;
+      .type {
+        font-size: 10px;
+        margin-right: 2.5px;
+        color: #4f827c;
+      }
+      .money {
+        color: var(--ka-text-color);
+        font-size: 13px;
+      }
+    }
+  
+    .balance {
+      flex: 1;
+      margin-bottom: 5px;
+      margin-left: 5px;
+  
+      .money {
+        line-height: 17px;
+        font-size: 15px;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+      .type {
+        font-size: 10px;
+        color: var(--ka-text-color);
+        margin-left: 5px;
+        color: gray;
+      }
+    }
+  }
+  

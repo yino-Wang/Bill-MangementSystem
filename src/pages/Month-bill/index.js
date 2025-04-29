@@ -85,14 +85,14 @@ const Month = () => {
   return (
     <div className="monthlyBill">
       <NavBar className="nav" backArrow={false}>
-        月度收支
+        Monthly Balance
       </NavBar>
       <div className="content">
         <div className="header">
           {/* 时间切换区域 */}
           <div className="date" onClick={() => setDataVisible(true)}>
             <span className="text">
-              {currentDate + ''}月账单
+              {currentDate + ''}
             </span>
             {/**/}
             <span className= {classNames('arrow', dataVisible && 'expand')}></span>
@@ -109,13 +109,13 @@ const Month = () => {
             </div>
             <div className="item">
               <span className="money">{monthResult.total.toFixed(2)}</span>
-              <span className="type">Remaining</span>
+              <span className="type">Balance</span>
             </div>
           </div>
           {/* 时间选择器 */}
           <DatePicker /*组件 具体取消确定按钮绑定事件看文档 */
             className="kaDate"
-            title="记账日期"
+            title="Billing date"
             precision="month"
             visible={dataVisible}
             onCancel={() => setDataVisible(false)}
