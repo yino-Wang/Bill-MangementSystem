@@ -26,13 +26,19 @@ A lightweight and intuitive bill management system built with React, Ant Design,
 ```bash
 git clone https://github.com/yino-Wang/Bill-MangementSystem.git
 cd Bill-MangementSystem
-2. Install dependencies
+```
+### 2. Install dependencies
+```bash
   npm install
-3. Start development server
+```
+### 3. Start development server
+```bash
   npm run start
+```
 
+--- 
 📁 Project Structure
-
+```bash
 src/
 ├── assets/           # Static assets (images, icons, etc.)
 ├── components/       # Reusable UI components
@@ -41,7 +47,7 @@ src/
 ├── App.jsx           # Root application component
 ├── main.jsx          # Application entry point
 └── index.scss        # Global styles
-
+```
 🧩 Possible Enhancements
 
 - ✅ Add user login and authentication
